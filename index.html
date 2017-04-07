@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Talk It Up! Web App</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <style>
+        body {
+            padding-top: 50px;
+        }
+
+        .starter-template {
+            padding: 40px 15px;
+            text-align: center;
+        }
+
+        .tab-pane {
+            height: 320px;
+            overflow-y: scroll;
+            /*width:100%;*/
+        }
+    </style>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="page-header">
+        <h1>Talk It Up!
+            <small>A Tool For Your Community</small>
+        </h1>
+    </div>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <button type="button" class="btn btn-default navbar-btn navbar-right"
+                style="margin-right: 10px; margin-left: 10px">
+            Finish
+        </button>
+        <button type="button" class="btn btn-default navbar-btn navbar-right"
+                style="margin-right: 10px; margin-left: 10px">
+            Preview
+        </button>
+    </nav>
+
+    <div class="row">
+        <div class="col-xs-5">
+            <h2 style="text-align: center;
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);">Notes</h2>
+            <div class="form-group tab-pane">
+                <textarea class="form-control" rows="15" id="" placeholder="Enter your notes here." onmouseup="showSelectionModal()"></textarea>
+            </div>
+        </div>
+        <div class="col-xs-5">
+            <h2 style="text-align: center;
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);">Artifact</h2>
+            <div class="form-group tab-pane">
+                <label for="summary">
+                    <h4>Summary</h4>
+                </label>
+                <textarea class="form-control" rows="5" id="summary" placeholder="140 characters or less"></textarea>
+                <label for="goals">
+                    <h4>Goals</h4>
+                </label>
+                <textarea class="form-control" rows="5" id="goals" placeholder=""></textarea>
+                <label for="successes">
+                    <h4>Successes</h4>
+                </label>
+                <textarea class="form-control" rows="5" id="successes" placeholder=""></textarea>
+                <label for="feedback">
+                    <h4>Feedback</h4>
+                </label>
+                <textarea class="form-control" rows="5" id="feedback" placeholder=""></textarea>
+                <label for="additional-info">
+                    <h4>Additional Info</h4>
+                </label>
+                <textarea class="form-control" rows="5" id="additional-info" placeholder=""></textarea>
+            </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <ul class="nav nav-pills nav-stacked">
+                <li role="presentation"><a href="#summary">Summary</a></li>
+                <li role="presentation"><a href="#goals">Goals</a></li>
+                <li role="presentation"><a href="#successes">Successes</a></li>
+                <li role="presentation"><a href="#feedback">Feedback</a></li>
+                <li role="presentation"><a href="#additional-info">Additional Info</a></li>
+            </ul>
+
+        </div>
+    </div>
+</div><!-- /.container -->
+
+<!--THIS DOESNT WORK YET-->
+<script>
+    function showSelectionModal() {
+        var text = getSelection(input);
+
+        if(text == null || text.length == 0) text = "nothing returned";
+
+        return text;
+    }
+</script>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
