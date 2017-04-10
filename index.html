@@ -117,8 +117,12 @@
                 top: 50%;
                 transform: translateY(-50%);">Notes</h2>
             <div class="form-group tab-pane">
-                <textarea class="form-control" rows="15" id="notes-text" placeholder="Enter your notes here."
-                          onmouseup="showSelectionModal()"></textarea>
+                <form id="file-form" action="handler.php" method="POST">
+                    <input type="file" id="file-select" name="photos[]"/>
+                    <button type="submit" id="upload-button">Upload</button>
+                </form>
+                <!--<textarea class="form-control" rows="15" id="notes-text" placeholder="Enter your notes here."-->
+                          <!--onmouseup="showSelectionModal()"></textarea>-->
             </div>
         </div>
         <div class="col-xs-5">
@@ -138,7 +142,7 @@
                 <label for="summary">
                     <h4 id="summary-hdr">Summary</h4>
                 </label>
-                <textarea class="form-control" rows="5" id="summary" placeholder="140 characters or less"></textarea>
+                <textarea class="form-control" maxlength="140" rows="5" id="summary" placeholder="140 characters or less"></textarea>
                 <label for="goals">
                     <h4 id="goals-hdr">Goals</h4>
                 </label>
@@ -172,20 +176,24 @@
 <!--THIS DOESNT WORK YET-->
 <script>
 
-    var doc = new jsPDF();
-    var specialElementHandlers = {
-        '#editor': function (element, renderer) {
-            return true;
-        }
-    };
+    var form = document.getElementById('file-form');
+    var fileSelect = document.getElementById('file-select');
+    var uploadButton = document.getElementById('upload-button');
 
-    $('#exportPDF').click(function () {
-        doc.fromHTML($('#preview-artifact').html(), 15, 15, {
-            'width': 180,
-            'elementHandlers': specialElementHandlers
-        });
-        doc.save('TalkItUp-Artifact.pdf');
-    });
+//    var doc = new jsPDF();
+//    var specialElementHandlers = {
+//        '#editor': function (element, renderer) {
+//            return true;
+//        }
+//    };
+//
+//    $('#exportPDF').click(function () {
+//        doc.fromHTML($('#preview-artifact').html(), 15, 15, {
+//            'width': 180,
+//            'elementHandlers': specialElementHandlers
+//        });
+//        doc.save('TalkItUp-Artifact.pdf');
+//    });
 
     function preparePreview() {
         var eventNameText = document.getElementById("event-name").value;
