@@ -10,3 +10,16 @@ h1 {
 #nav {
     float:right;
 }
+
+.container {
+    margin-top: 3%;
+}
+
+.form-group {
+    overflow-y: scroll;
+    height: 500px;
+}
+
+h2 {
+    color: #00a4cc;
+}
