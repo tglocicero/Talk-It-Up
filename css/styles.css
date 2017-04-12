@@ -23,3 +23,12 @@ h1 {
 h2 {
     color: #00a4cc;
 }
+
+.panel-heading {
+    background-color: #c2eed9;
+}
+
+.myButton {
+    color: #fff;
+    background-color:#00a4cc;
+}
