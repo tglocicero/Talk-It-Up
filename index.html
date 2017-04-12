@@ -134,8 +134,8 @@
                 margin-bottom: 10px;">Artifact</h2>
             <div class="form-group tab-pane">
                 <div class="panel-group">
-                    <div class="panel panel-default" data-toggle="collapse" href="#collapse1">
-                        <div class="panel-heading">
+                    <div class="panel panel-default" >
+                        <div class="panel-heading" data-toggle="collapse" href="#collapse1">
                             <h4 class="panel-title">
                                 <a >
                                     <label for="event-name">Event Name</label>
@@ -153,8 +153,8 @@
                     </div>
                 </div>
                 <div class="panel-group">
-                    <div class="panel panel-default" data-toggle="collapse" href="#collapse2">
-                        <div class="panel-heading">
+                    <div class="panel panel-default" >
+                        <div class="panel-heading" data-toggle="collapse" href="#collapse2">
                             <h4 class="panel-title">
                                 <a >
                                     <label for="org-name">Organization Name</label>
@@ -172,8 +172,8 @@
                     </div>
                 </div>
                 <div class="panel-group">
-                    <div class="panel panel-default" data-toggle="collapse" href="#collapse3">
-                        <div class="panel-heading">
+                    <div class="panel panel-default" >
+                        <div class="panel-heading" data-toggle="collapse" href="#collapse3">
                             <h4 class="panel-title">
                                 <a >
                                     <label for="summary">Summary</label>
@@ -191,8 +191,8 @@
                     </div>
                 </div>
                 <div class="panel-group">
-                    <div class="panel panel-default" data-toggle="collapse" href="#collapse4">
-                        <div class="panel-heading">
+                    <div class="panel panel-default" >
+                        <div class="panel-heading" data-toggle="collapse" href="#collapse4">
                             <h4 class="panel-title">
                                 <a >
                                     <label for="goals">Goals</label>
@@ -210,8 +210,8 @@
                     </div>
                 </div>
                 <div class="panel-group">
-                    <div class="panel panel-default" data-toggle="collapse" href="#collapse5">
-                        <div class="panel-heading">
+                    <div class="panel panel-default" >
+                        <div class="panel-heading" data-toggle="collapse" href="#collapse5">
                             <h4 class="panel-title">
                                 <a >
                                     <label for="successes">Successes</label>
@@ -229,8 +229,8 @@
                     </div>
                 </div>
                 <div class="panel-group">
-                    <div class="panel panel-default" data-toggle="collapse" href="#collapse6">
-                        <div class="panel-heading">
+                    <div class="panel panel-default" >
+                        <div class="panel-heading" data-toggle="collapse" href="#collapse6">
                             <h4 class="panel-title">
                                 <a >
                                     <label for="feedback">Feedback</label>
@@ -248,8 +248,8 @@
                     </div>
                 </div>
                 <div class="panel-group">
-                    <div class="panel panel-default" data-toggle="collapse" href="#collapse7">
-                        <div class="panel-heading">
+                    <div class="panel panel-default" >
+                        <div class="panel-heading" data-toggle="collapse" href="#collapse7">
                             <h4 class="panel-title">
                                 <a >
                                     <label for="additional-info">Additional Info</label>
@@ -324,20 +324,6 @@
         // download the PDF
         pdfMake.createPdf(docDefinition).download('Artifact.pdf');
     });
-//    var doc = new jsPDF();
-//    var specialElementHandlers = {
-//        '#editor': function (element, renderer) {
-//            return true;
-//        }
-//    };
-//
-//    $('#exportPDF').click(function () {
-//        doc.fromHTML($('#preview-artifact').html(), 15, 15, {
-//            'width': 180,
-//            'elementHandlers': specialElementHandlers
-//        });
-//        doc.save('TalkItUp-Artifact.pdf');
-//    });
 
     function copySummaryText() {
         var text = document.getElementById("selection-modal-title").innerText;
