@@ -7,3 +7,5 @@
 - Icons + coloration?
 - Improved modal for highlighting
 - Social Media integration
+- Improved modal for highlighting/selecting and placing text
+
