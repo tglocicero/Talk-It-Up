@@ -7,35 +7,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Talk It Up! Web App</title>
-    <link rel= "styleguide" href = "css/styleguide.css">
+
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="css/styleguide.css">
+    <link rel="stylesheet" href="css/styles.css">
     <!-- Custom styles for this template -->
-    <style>
-
-
-
-        body {
-            padding-top: 50px;
-
-            background: #00B76B;
-        }
-        .starter-template {
-            padding: 40px 15px;
-            text-align: center;
-        }
-
-        .tab-pane {
-            height: 320px;
-            overflow-y: scroll;
-            /*width:100%;*/
-        }
-        .page-header { background: #00A4CC;}
-        .row { background: #00A4CC;
-            color: #ffffff;
-        }
-    </style>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -124,21 +101,18 @@
 <div class="container">
 
     <div class="page-header">
-        <h1>Talk It Up!
-            <small>A Tool For Your Community</small>
-        </h1>
+        <h1>Talk It Up!</h1>
+        <div id="nav">
+            <button type="button" class="btn btn-default navbar-btn navbar-right"
+                    style="margin-right: 10px; margin-left: 10px">
+                Finish
+            </button>
+            <button onclick="preparePreview()" type="button" class="btn btn-default navbar-btn navbar-right" data-toggle="modal" data-target="#myModal"
+                    style="margin-right: 10px; margin-left: 10px">
+                Preview
+            </button>
+        </div>
     </div>
-
-    <nav class="navbar navbar-default" role="navigation">
-        <button type="button" class="btn btn-default navbar-btn navbar-right"
-                style="margin-right: 10px; margin-left: 10px">
-            Finish
-        </button>
-        <button onclick="preparePreview()" type="button" class="btn btn-default navbar-btn navbar-right" data-toggle="modal" data-target="#myModal"
-                style="margin-right: 10px; margin-left: 10px">
-            Preview
-        </button>
-    </nav>
 
     <div class="row">
         <div class="col-xs-5">
