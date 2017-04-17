@@ -419,14 +419,17 @@
     }
 
     function showSelectionModal() {
-        document.getElementById("selection-modal-title").innerText = getSelectedText(document.getElementById("notes-text"));
-        $('#selectionModal').modal('show');
+        var text = getSelectedText(document.getElementById("notes-text"));
+        if (text != null) {
+            document.getElementById("selection-modal-title").innerText = text;
+            $('#selectionModal').modal('show');
+        }
     }
 
     function getSelectedText(input) {
         var text = getSelection(input);
 
-        if(text == null || text.length == 0) text = "nothing returned";
+        if(text == null || text.length == 0) return null;
 
         return text;
     }
