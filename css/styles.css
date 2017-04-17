@@ -32,3 +32,9 @@ h2 {
     color: #fff;
     background-color:#00a4cc;
 }
+
+#upload {
+    margin-left:10%;
+    margin-right:10%;
+    margin-bottom: 10%;
+}
