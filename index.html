@@ -159,7 +159,7 @@
                                       // Render thumbnail.
                                       var span = document.createElement('span');
                                       span.innerHTML = ['<div class="thumbnail"><img src="', e.target.result,
-                                                    '" alt="', escape(theFile.name), '"id=img', i, '></div>'].join('');
+                                                    '" alt="', encodeURI(theFile.name), '"id=img', i, '></div>'].join('');
                                       document.getElementById('list').insertBefore(span, null);
                                 };
                                   })(f);
@@ -298,7 +298,7 @@
         var successes = document.getElementById('preview-successes-text').innerText;
         var feedback = document.getElementById('preview-feedback-text').innerText;
         var additionalinfo = document.getElementById('preview-additional-info-text').innerText;
-        var image = document.getElementById('img1').src;
+
         // var images[];
         // for (int i = 0; i < $('#list > span').length; i++) {
         //     images.push()
@@ -323,8 +323,7 @@
                 " ",
                 { text: document.getElementById('preview-additional-info-hdr').innerText, style: 'SubHeading' },
                 additionalinfo,
-                { image: document.getElementById('img1').src},
-                image
+                { image: document.getElementById('img1').src}
             ],
 
             styles: {
