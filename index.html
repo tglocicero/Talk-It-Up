@@ -350,31 +350,31 @@
     function copySummaryText() {
         var text = document.getElementById("selection-modal-title").innerText;
         $('#selectionModal').modal('hide');
-        document.getElementById("summary").innerText = text;
+        document.getElementById("summary").value += text;
         $('#collapse3').collapse('show');
     }
     function copyGoalsText() {
         var text = document.getElementById("selection-modal-title").innerText;
         $('#selectionModal').modal('hide');
-        document.getElementById("goals").innerText = text;
+        document.getElementById("goals").value += text;
         $('#collapse4').collapse('show');
     }
     function copySuccessesText() {
         var text = document.getElementById("selection-modal-title").innerText;
         $('#selectionModal').modal('hide');
-        document.getElementById("successes").innerText = text;
+        document.getElementById("successes").value += text;
         $('#collapse5').collapse('show');
     }
     function copyFeedbackText() {
         var text = document.getElementById("selection-modal-title").innerText;
         $('#selectionModal').modal('hide');
-        document.getElementById("feedback").innerText = text;
+        document.getElementById("feedback").value += text;
         $('#collapse6').collapse('show');
     }
     function copyAdditionalInfoText() {
         var text = document.getElementById("selection-modal-title").innerText;
         $('#selectionModal').modal('hide');
-        document.getElementById("additional-info").innerText = text;
+        document.getElementById("additional-info").value += text;
         $('#collapse7').collapse('show');
     }
 
