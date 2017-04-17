@@ -107,7 +107,11 @@
                     style="margin-right: 10px; margin-left: 10px">
                 Finish
             </button> -->
-            <button onclick="preparePreview()" type="button" class="btn btn-default navbar-btn navbar-right myButton" data-toggle="modal" data-target="#myModal"
+            <button onclick="" type="button" class="btn btn-default navbar-btn navbar-right myButton"
+                    style="margin-right: 10px; margin-left: 10px">
+                Publish
+            </button>
+            <button onclick="preparePreview()" type="button" class="btn btn-default navbar-btn navbar-right"
                     style="margin-right: 10px; margin-left: 10px">
                 Preview
             </button>
@@ -290,63 +294,6 @@
 
 <script>
 
-    $('#exportPDF').click(function () {
-        var eventname = document.getElementById('preview-event-name').innerText;
-        var orgname = document.getElementById('preview-org-name').innerText;
-        var summary = document.getElementById('preview-summary-text').innerText;
-        var goals = document.getElementById('preview-goals-text').innerText;
-        var successes = document.getElementById('preview-successes-text').innerText;
-        var feedback = document.getElementById('preview-feedback-text').innerText;
-        var additionalinfo = document.getElementById('preview-additional-info-text').innerText;
-
-        // var images[];
-        // for (int i = 0; i < $('#list > span').length; i++) {
-        //     images.push()
-        // }
-        var docDefinition = {
-            content: [
-                { text: eventname, style: 'EventName' },
-                { text: 'Hosted By:', alignment: 'center' },
-                { text: orgname, style: 'OrgName' },
-                " ",
-                { text: document.getElementById('preview-summary-hdr').innerText, style: 'SubHeading' },
-                summary,
-                " ",
-                { text: document.getElementById('preview-goals-hdr').innerText, style: 'SubHeading' },
-                goals,
-                " ",
-                { text: document.getElementById('preview-successes-hdr').innerText, style: 'SubHeading' },
-                successes,
-                " ",
-                { text: document.getElementById('preview-feedback-hdr').innerText, style: 'SubHeading' },
-                feedback,
-                " ",
-                { text: document.getElementById('preview-additional-info-hdr').innerText, style: 'SubHeading' },
-                additionalinfo,
-                { image: document.getElementById('img1').src}
-            ],
-
-            styles: {
-                EventName: {
-                    fontSize: 36,
-                    alignment: 'center',
-                    bold: true
-                },
-                OrgName: {
-                    fontSize: 22,
-                    alignment: 'center'
-                },
-                SubHeading: {
-                    fontSize: 16,
-                    alignment: 'left'
-                }
-            }
-        };
-
-        // download the PDF
-        pdfMake.createPdf(docDefinition).download('Artifact.pdf');
-    });
-
     function copySummaryText() {
         var text = document.getElementById("selection-modal-title").innerText;
         $('#selectionModal').modal('hide');
@@ -379,41 +326,60 @@
     }
 
     function preparePreview() {
-        var eventNameText = document.getElementById("event-name").value;
-        if (eventNameText != "") {
-            document.getElementById("preview-event-name").innerText = eventNameText;
-        }
+        var eventname = document.getElementById('event-name').value;
+        var orgname = document.getElementById('org-name').value;
+        var summary = document.getElementById('summary').value;
+        var goals = document.getElementById('goals').value;
+        var successes = document.getElementById('successes').value;
+        var feedback = document.getElementById('feedback').value;
+        var additionalinfo = document.getElementById('additional-info').value;
 
-        var orgNameText = document.getElementById("org-name").value;
-        if (orgNameText != "") {
-            document.getElementById("preview-org-name-hdr").innerText = "Hosted By:"
-            document.getElementById("preview-org-name").innerText = orgNameText;
-        }
-        var summaryText = document.getElementById("summary").value;
-        if (summaryText != "") {
-            document.getElementById("preview-summary-hdr").innerText = "Summary"
-            document.getElementById("preview-summary-text").innerText = summaryText;
-        }
-        var goalsText = document.getElementById("goals").value;
-        if (goalsText != "") {
-            document.getElementById("preview-goals-hdr").innerText = "Goals"
-            document.getElementById("preview-goals-text").innerText = goalsText;
-        }
-        var successesText = document.getElementById("successes").value;
-        if (successesText != "") {
-            document.getElementById("preview-successes-hdr").innerText = "Successes"
-            document.getElementById("preview-successes-text").innerText = successesText;
-        }
-        var feedbackText = document.getElementById("feedback").value;
-        if (feedbackText != "") {
-            document.getElementById("preview-feedback-hdr").innerText = "Feedback"
-            document.getElementById("preview-feedback-text").innerText = feedbackText;
-        }
-        var additionalInfoText = document.getElementById("additional-info").value;
-        if (additionalInfoText != "") {
-            document.getElementById("preview-additional-info-hdr").innerText = "Additional Info"
-            document.getElementById("preview-additional-info-text").innerText = additionalInfoText;
-        }
+        // var images[];
+        // for (int i = 0; i < $('#list > span').length; i++) {
+        //     images.push()
+        // }
+        var docDefinition = {
+            content: [
+                { text: eventname, style: 'EventName' },
+                { text: 'Hosted By:', alignment: 'center' },
+                { text: orgname, style: 'OrgName' },
+                " ",
+                { text: document.getElementById('summary').value, style: 'SubHeading' },
+                summary,
+                " ",
+                { text: document.getElementById('goals').value, style: 'SubHeading' },
+                goals,
+                " ",
+                { text: document.getElementById('successes').value, style: 'SubHeading' },
+                successes,
+                " ",
+                { text: document.getElementById('feedback').value, style: 'SubHeading' },
+                feedback,
+                " ",
+                { text: document.getElementById('additional-info').value, style: 'SubHeading' },
+                additionalinfo,
+                { image: document.getElementById('img1').src}
+            ],
+
+            styles: {
+                EventName: {
+                    fontSize: 36,
+                    alignment: 'center',
+                    bold: true
+                },
+                OrgName: {
+                    fontSize: 22,
+                    alignment: 'center'
+                },
+                SubHeading: {
+                    fontSize: 16,
+                    alignment: 'left'
+                }
+            }
+        };
+
+        // download the PDF
+        pdfMake.createPdf(docDefinition).open();
 
     }
 
