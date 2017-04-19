@@ -115,7 +115,24 @@
             <div class="form-group tab-pane">
                 <textarea class="form-control" rows="22" id="notes-text" placeholder="Enter your notes here."
                           onmouseup="showSelectionModal()"></textarea>
-                <button onclick="preparePreview()" type="button" class="btn btn-default navbar-btn navbar-left myButton"
+
+                <div id="notes-div">
+                    <span id="notes" rows="22">
+                    </span>
+                    <br/>
+                </div>
+
+                <button onclick="turnToDiv()" type="button" class="btn btn-default navbar-btn"
+                        data-toggle="" id="save"
+                        style="margin-right: 10px; margin-left: 10px">
+                    Save
+                </button>
+                <button onclick="turnToTextArea()" type="button" class="btn btn-default navbar-btn"
+                        data-toggle="" id="edit"
+                        style="margin-right: 10px; margin-left: 10px">
+                    Edit
+                </button>
+                <button onclick="preparePreview()" type="button" class="btn btn-default navbar-btn myButton"
                         data-toggle="modal" data-target="#imageModal"
                         style="margin-right: 10px; margin-left: 10px">
                     Add Images
@@ -300,6 +317,11 @@
 
 
 <script>
+    $(document).ready(function(){
+        $('#edit').hide();
+        $('#notes').hide();
+        $('#notes-div').hide();
+    });
 
     function copySummaryText() {
         var text = document.getElementById("selection-modal-title").innerText;
@@ -444,6 +466,31 @@
         for (var i = 3; i < 8; i++) {
             $('#collapse' + i).collapse('show');
         }
+    }
+
+    function turnToDiv() {
+        var value = document.getElementById("notes-text").value;
+        $('#notes').text(value);
+        $('#notes').show();
+
+        $('#notes-text').hide();
+        $('#save').hide();
+        $('#edit').show();
+
+        $('#notes-div').show();
+    }
+
+    function turnToTextArea() {
+        var value = document.getElementById("notes").innerText;
+        $('#notes-text').value = value;
+        $('#notes-text').show();
+
+        $('#notes-text').show();
+        $('#notes').hide();
+        $('#save').show();
+        $('#edit').hide();
+
+        $('#notes-div').hide();
     }
 
 

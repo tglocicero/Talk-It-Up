@@ -52,3 +52,9 @@ h2 {
     background-color:   #3b5998;
     color: white;
 }
+#notes {
+        white-space: pre;
+}
+
+#notes-div {
+}
