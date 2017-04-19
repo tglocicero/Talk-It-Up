@@ -36,38 +36,23 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">x</button>
-                <h4 class="modal-title">Your Artifact Preview</h4>
+                <h4 class="modal-title">Publish</h4>
             </div>
-            <div id="preview-artifact" class="modal-body">
-                <div>
-                    <h1 id="preview-event-name" style="text-align: center"></h1>
-                </div>
-                <div>
-                    <h4 id="preview-org-name-hdr" style="text-align: center"></h4>
-                    <h2 id="preview-org-name" style="text-align: center"></h2>
-                </div>
-                <div>
-                    <h3 id="preview-summary-hdr"></h3>
-                    <p id="preview-summary-text"></p>
-                </div>
-                <div>
-                    <h3 id="preview-goals-hdr"></h3>
-                    <p id="preview-goals-text"></p>
-                </div>
-                <div>
-                    <h3 id="preview-successes-hdr"></h3>
-                    <p id="preview-successes-text"></p>
-                </div>
-                <div>
-                    <h3 id="preview-feedback-hdr"></h3>
-                    <p id="preview-feedback-text"></p>
-                </div>
-                <div>
-                    <h3 id="preview-additional-info-hdr"></h3>
-                    <p id="preview-additional-info-text"></p>
-                </div>
 
+            <div id="sharing">
+                <h4>Share to Social Media</h5>
+                <button type="button" class="btn btn-default navbar-btn" id="twitter"
+                    style="margin-right: 10px;">
+                    Tweet about it!
+                </button>
+
+                <button type="button" class="btn btn-default navbar-btn" id="facebook"
+                    style="margin-right: 10px;">
+                    Share to Facebook!
+                </button>
             </div>
+
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button class="btn btn-default" id="exportPDF">Generate PDF</button>
@@ -108,7 +93,8 @@
                     style="margin-right: 10px; margin-left: 10px">
                 Finish
             </button> -->
-            <button onclick="" type="button" class="btn btn-default navbar-btn navbar-right myButton"
+            <button data-toggle="modal" data-target="#myModal"
+                 type="button" class="btn btn-default navbar-btn navbar-right myButton"
                     style="margin-right: 10px; margin-left: 10px">
                 Publish
             </button>

@@ -38,3 +38,17 @@ h2 {
     margin-right:10%;
     margin-bottom: 10%;
 }
+
+#sharing {
+    margin: 5%;
+}
+
+#twitter {
+    background-color: #00aced;
+    color: white;
+}
+
+#facebook {
+    background-color:   #3b5998;
+    color: white;
+}
