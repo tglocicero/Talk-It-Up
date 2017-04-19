@@ -313,14 +313,32 @@
     </div>
 </div><!-- /.container -->
 
-<div class="popover" id="popover">
+<div class="popover" id="popover" style="padding:10px;">
     <h4>Send text to...</h4>
-    <hr>
-    <button type="button" class="btn btn-default" onclick="copySummaryText()">Summary</button>
-    <button type="button" class="btn btn-default" onclick="copyGoalsText()">Goals</button>
-    <button type="button" class="btn btn-default" onclick="copySuccessesText()">Successes</button>
-    <button type="button" class="btn btn-default" onclick="copyFeedbackText()">Feedback</button>
-    <button type="button" class="btn btn-default" onclick="copyAdditionalInfoText()">Additional Info
+    <button type="button" class="btn btn-default btn-block"
+            style="background-color:#00B76B; color:#ffffff; text-align: left;" onclick="copySummaryText()">
+        <img src="img/summary.png" alt=" " style="width:25px;height:25px;margin:0">
+        Summary
+    </button>
+    <button type="button" class="btn btn-default btn-block"
+            style="background-color:#CD000C; color:#ffffff; text-align: left;" onclick="copyGoalsText()">
+        <img src="img/goals.png" alt=" " style="width:25px;height:25px;margin:0">
+        Goals
+    </button>
+    <button type="button" class="btn btn-default btn-block"
+            style="background-color:#F0AA00; color:#ffffff; text-align: left;" onclick="copySuccessesText()">
+        <img src="img/successes.png" alt=" " style="width:25px;height:25px;margin:0">
+        Successes
+    </button>
+    <button type="button" class="btn btn-default btn-block"
+            style="background-color:#00A4CC; color:#ffffff; text-align: left;" onclick="copyFeedbackText()">
+        <img src="img/feedback.png" alt=" " style="width:25px;height:25px;margin:0">
+        Feedback
+    </button>
+    <button type="button" class="btn btn-default btn-block"
+            style="background-color:#00206C; color:#ffffff; text-align: left;" onclick="copyAdditionalInfoText()">
+        <img src="img/additionalinfo.png" alt=" " style="width:25px;height:25px;margin:0">
+        Additional Info
     </button>
 </div>
 
@@ -330,6 +348,12 @@
         $('#edit').hide();
         $('#notes').hide();
         $('#notes-div').hide();
+    });
+
+    $('html').on('mouseup', function(e) {
+        if(!$(e.target).closest('.popover').length && selected_text == "") {
+            $('#popover').hide();
+        }
     });
 
     var selected_text = "";
@@ -432,7 +456,7 @@
 
     function showSelectionModal(e) {
         var text = document.getSelection();
-        if (text != null) {
+        if (text != null && text != "") {
             selected_text = text;
             //document.getElementById("selection-modal-title").innerText = text;
             //$('#selectionModal').modal('show');
@@ -442,6 +466,8 @@
             $('.popover').show();
             $('.popover').css('left', (left+10) + 'px');
             $('.popover').css('top', (top-(theHeight/2)-10) + 'px');
+        } else {
+            selected_text = "";
         }
     }
 
