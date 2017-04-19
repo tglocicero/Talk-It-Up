@@ -36,38 +36,23 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">x</button>
-                <h4 class="modal-title">Your Artifact Preview</h4>
+                <h4 class="modal-title">Publish</h4>
             </div>
-            <div id="preview-artifact" class="modal-body">
-                <div>
-                    <h1 id="preview-event-name" style="text-align: center"></h1>
-                </div>
-                <div>
-                    <h4 id="preview-org-name-hdr" style="text-align: center"></h4>
-                    <h2 id="preview-org-name" style="text-align: center"></h2>
-                </div>
-                <div>
-                    <h3 id="preview-summary-hdr"></h3>
-                    <p id="preview-summary-text"></p>
-                </div>
-                <div>
-                    <h3 id="preview-goals-hdr"></h3>
-                    <p id="preview-goals-text"></p>
-                </div>
-                <div>
-                    <h3 id="preview-successes-hdr"></h3>
-                    <p id="preview-successes-text"></p>
-                </div>
-                <div>
-                    <h3 id="preview-feedback-hdr"></h3>
-                    <p id="preview-feedback-text"></p>
-                </div>
-                <div>
-                    <h3 id="preview-additional-info-hdr"></h3>
-                    <p id="preview-additional-info-text"></p>
-                </div>
 
+            <div id="sharing">
+                <h5>Share to Social Media</h5>
+                <button type="button" class="btn btn-default navbar-btn" id="twitter"
+                    style="margin-right: 10px;">
+                    Tweet about it!
+                </button>
+
+                <button type="button" class="btn btn-default navbar-btn" id="facebook"
+                    style="margin-right: 10px;">
+                    Share to Facebook!
+                </button>
             </div>
+
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button class="btn btn-default" id="exportPDF">Generate PDF</button>
@@ -107,7 +92,8 @@
                     style="margin-right: 10px; margin-left: 10px">
                 Finish
             </button> -->
-            <button onclick="" type="button" class="btn btn-default navbar-btn navbar-right myButton"
+            <button data-toggle="modal" data-target="#myModal"
+                 type="button" class="btn btn-default navbar-btn navbar-right myButton"
                     style="margin-right: 10px; margin-left: 10px">
                 Publish
             </button>
@@ -127,7 +113,24 @@
                 margin-bottom: 10px;">Notes</h2>
             <div class="form-group tab-pane">
                 <textarea class="form-control" rows="22" id="notes-text" placeholder="Enter your notes here."></textarea>
-                <button onclick="preparePreview()" type="button" class="btn btn-default navbar-btn navbar-left myButton"
+
+                <div id="notes-div">
+                    <div id="notes">
+                    </div>
+                    <br/>
+                </div>
+
+                <button onclick="turnToDiv()" type="button" class="btn btn-default navbar-btn"
+                        data-toggle="" id="save"
+                        style="margin-right: 10px; margin-left: 10px">
+                    Save
+                </button>
+                <button onclick="turnToTextArea()" type="button" class="btn btn-default navbar-btn"
+                        data-toggle="" id="edit"
+                        style="margin-right: 10px; margin-left: 10px">
+                    Edit
+                </button>
+                <button onclick="preparePreview()" type="button" class="btn btn-default navbar-btn myButton"
                         data-toggle="modal" data-target="#imageModal"
                         style="margin-right: 10px; margin-left: 10px">
                     Add Images
@@ -323,10 +326,15 @@
 
 
 <script>
+    $(document).ready(function(){
+        $('#edit').hide();
+        $('#notes').hide();
+        $('#notes-div').hide();
+    });
 
     var selected_text = "";
 
-    $("#notes-text").on("mouseup", function(e) {
+    $("#notes").on("mouseup", function(e) {
         showSelectionModal(e);
     });
 
@@ -423,7 +431,7 @@
     }
 
     function showSelectionModal(e) {
-        var text = getSelectedText(document.getElementById("notes-text"));
+        var text = document.getSelection();
         if (text != null) {
             selected_text = text;
             //document.getElementById("selection-modal-title").innerText = text;
@@ -480,6 +488,31 @@
         for (var i = 3; i < 8; i++) {
             $('#collapse' + i).collapse('show');
         }
+    }
+
+    function turnToDiv() {
+        var value = document.getElementById("notes-text").value;
+        $('#notes').text(value);
+        $('#notes').show();
+
+        $('#notes-text').hide();
+        $('#save').hide();
+        $('#edit').show();
+
+        $('#notes-div').show();
+    }
+
+    function turnToTextArea() {
+        var value = document.getElementById("notes").innerText;
+        $('#notes-text').value = value;
+        $('#notes-text').show();
+
+        $('#notes-text').show();
+        $('#notes').hide();
+        $('#save').show();
+        $('#edit').hide();
+
+        $('#notes-div').hide();
     }
 
 
