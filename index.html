@@ -127,15 +127,14 @@
                 transform: translateY(-50%);
                 margin-bottom: 10px;">Notes</h2>
             <div class="form-group tab-pane">
-                <textarea class="form-control" rows="24" id="notes-text" placeholder="Enter your notes here."
+                <textarea class="form-control" rows="22" id="notes-text" placeholder="Enter your notes here."
                           onmouseup="showSelectionModal()"></textarea>
+                <button onclick="preparePreview()" type="button" class="btn btn-default navbar-btn navbar-left myButton"
+                        data-toggle="modal" data-target="#imageModal"
+                        style="margin-right: 10px; margin-left: 10px">
+                    Add Images
+                </button>
             </div>
-
-            <button onclick="preparePreview()" type="button" class="btn btn-default navbar-btn navbar-left myButton"
-                    data-toggle="modal" data-target="#imageModal"
-                    style="margin-right: 10px; margin-left: 10px">
-                Add Images
-            </button>
 
             <div class="modal fade" id="imageModal">
                 <div class="modal-dialog">
