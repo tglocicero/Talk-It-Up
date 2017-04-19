@@ -1,4 +1,4 @@
-# TODO
+# TODO
 -------------
 - Images? - sorta done
 - Improved exported layout
@@ -6,7 +6,8 @@
 - ~~Change all other boxes to include prompt in placeholder text~~
 - Icons + coloration?
 - Social Media integration (we don't actually need to post, just have a button for it that gives a success message when clicked)
-- Improved modal for highlighting/selecting and placing text
-- Add button that collapses all the forms
-- make preview button just open pdf in new tab
+- Improved modal for highlighting/~~selecting and placing text~~
+- ~~Add buttons to collapse/open all the forms~~
+- ~~make preview button just open pdf in new tab~~
+    - fix bug: user can only view preview if they've uploaded an image
 - make publish button show a download pdf options or send to social media buttons
