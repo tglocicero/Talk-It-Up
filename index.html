@@ -335,7 +335,10 @@
         var successes = document.getElementById('successes').value;
         var feedback = document.getElementById('feedback').value;
         var additionalinfo = document.getElementById('additional-info').value;
-
+        var hostedBy = "";
+        if (orgname != "") {
+            hostedBy = 'Hosted By:';
+        }
         // var images[];
         // for (int i = 0; i < $('#list > span').length; i++) {
         //     images.push()
@@ -343,7 +346,7 @@
         var docDefinition = {
             content: [
                 {text: eventname, style: 'EventName'},
-                {text: 'Hosted By:', alignment: 'center'},
+                {text: hostedBy, alignment: 'center'},
                 {text: orgname, style: 'OrgName'},
                 " ",
                 {text: document.getElementById('summary').value, style: 'SubHeading'},
@@ -430,11 +433,6 @@
         for (var i = 3; i < 8; i++) {
             $('#collapse' + i).collapse('hide');
         }
-//        $('#collapse3').collapse('hide');
-//        $('#collapse4').collapse('hide');
-//        $('#collapse5').collapse('hide');
-//        $('#collapse6').collapse('hide');
-//        $('#collapse7').collapse('hide');
     }
 
     function openAll() {
