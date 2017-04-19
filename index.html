@@ -76,28 +76,27 @@
     </div>
 </div>
 
-
-<div class="modal fade" id="selectionModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h4 class="modal-title" id="selection-modal-title"></h4>
-            </div>
-            <div class="modal-body" id="selection-modal-text">
-                Where would you like to put the selected text?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" onclick="copySummaryText()">Summary</button>
-                <button type="button" class="btn btn-default" onclick="copyGoalsText()">Goals</button>
-                <button type="button" class="btn btn-default" onclick="copySuccessesText()">Successes</button>
-                <button type="button" class="btn btn-default" onclick="copyFeedbackText()">Feedback</button>
-                <button type="button" class="btn btn-default" onclick="copyAdditionalInfoText()">Additional Info
-                </button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+<!--<div class="modal fade" id="selectionModal">-->
+    <!--<div class="modal-dialog">-->
+        <!--<div class="modal-content">-->
+            <!--<div class="modal-header">-->
+                <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>-->
+                <!--<h4 class="modal-title" id="selection-modal-title"></h4>-->
+            <!--</div>-->
+            <!--<div class="modal-body" id="selection-modal-text">-->
+                <!--Where would you like to put the selected text?-->
+            <!--</div>-->
+            <!--<div class="modal-footer">-->
+                <!--<button type="button" class="btn btn-default" onclick="copySummaryText()">Summary</button>-->
+                <!--<button type="button" class="btn btn-default" onclick="copyGoalsText()">Goals</button>-->
+                <!--<button type="button" class="btn btn-default" onclick="copySuccessesText()">Successes</button>-->
+                <!--<button type="button" class="btn btn-default" onclick="copyFeedbackText()">Feedback</button>-->
+                <!--<button type="button" class="btn btn-default" onclick="copyAdditionalInfoText()">Additional Info-->
+                <!--</button>-->
+            <!--</div>-->
+        <!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
+    <!--</div>&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
+<!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
 
 <div class="container">
 
@@ -127,8 +126,7 @@
                 transform: translateY(-50%);
                 margin-bottom: 10px;">Notes</h2>
             <div class="form-group tab-pane">
-                <textarea class="form-control" rows="22" id="notes-text" placeholder="Enter your notes here."
-                          onmouseup="showSelectionModal()"></textarea>
+                <textarea class="form-control" rows="22" id="notes-text" placeholder="Enter your notes here."></textarea>
                 <button onclick="preparePreview()" type="button" class="btn btn-default navbar-btn navbar-left myButton"
                         data-toggle="modal" data-target="#imageModal"
                         style="margin-right: 10px; margin-left: 10px">
@@ -189,12 +187,6 @@
                     margin-bottom: 10px;">
                 Artifact
             </h2>
-            <div align="right">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default" onclick="collapseAll()">-</button>
-                    <button type="button" class="btn btn-default" onclick="openAll()">+</button>
-                </div>
-            </div>
             <div class="form-group tab-pane">
                 <div class="panel-group">
                     <h4 class="panel-title">
@@ -307,40 +299,63 @@
                         </div>
                     </div>
                 </div>
+                <div align="right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default" onclick="collapseAll()">-</button>
+                        <button type="button" class="btn btn-default" onclick="openAll()">+</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div><!-- /.container -->
 
+<div class="popover" id="popover">
+    <h4>Send text to...</h4>
+    <hr>
+    <button type="button" class="btn btn-default" onclick="copySummaryText()">Summary</button>
+    <button type="button" class="btn btn-default" onclick="copyGoalsText()">Goals</button>
+    <button type="button" class="btn btn-default" onclick="copySuccessesText()">Successes</button>
+    <button type="button" class="btn btn-default" onclick="copyFeedbackText()">Feedback</button>
+    <button type="button" class="btn btn-default" onclick="copyAdditionalInfoText()">Additional Info
+    </button>
+</div>
+
 
 <script>
 
+    var selected_text = "";
+
+    $("#notes-text").on("mouseup", function(e) {
+        showSelectionModal(e);
+    });
+
     function copySummaryText() {
-        var text = document.getElementById("selection-modal-title").innerText;
-        $('#selectionModal').modal('hide');
+        var text = selected_text;
+        $('#popover').hide();
         document.getElementById("summary").value += text;
         $('#collapse3').collapse('show');
     }
     function copyGoalsText() {
-        var text = document.getElementById("selection-modal-title").innerText;
+        var text = selected_text;
         $('#selectionModal').modal('hide');
         document.getElementById("goals").value += text;
         $('#collapse4').collapse('show');
     }
     function copySuccessesText() {
-        var text = document.getElementById("selection-modal-title").innerText;
+        var text = selected_text;
         $('#selectionModal').modal('hide');
         document.getElementById("successes").value += text;
         $('#collapse5').collapse('show');
     }
     function copyFeedbackText() {
-        var text = document.getElementById("selection-modal-title").innerText;
+        var text = selected_text;
         $('#selectionModal').modal('hide');
         document.getElementById("feedback").value += text;
         $('#collapse6').collapse('show');
     }
     function copyAdditionalInfoText() {
-        var text = document.getElementById("selection-modal-title").innerText;
+        var text = selected_text;
         $('#selectionModal').modal('hide');
         document.getElementById("additional-info").value += text;
         $('#collapse7').collapse('show');
@@ -407,11 +422,18 @@
 
     }
 
-    function showSelectionModal() {
+    function showSelectionModal(e) {
         var text = getSelectedText(document.getElementById("notes-text"));
         if (text != null) {
-            document.getElementById("selection-modal-title").innerText = text;
-            $('#selectionModal').modal('show');
+            selected_text = text;
+            //document.getElementById("selection-modal-title").innerText = text;
+            //$('#selectionModal').modal('show');
+            var left = e.pageX;
+            var top = e.pageY;
+            var theHeight = $('.popover').height();
+            $('.popover').show();
+            $('.popover').css('left', (left+10) + 'px');
+            $('.popover').css('top', (top-(theHeight/2)-10) + 'px');
         }
     }
 
