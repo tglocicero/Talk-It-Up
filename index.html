@@ -42,12 +42,12 @@
             <div id="sharing">
                 <h5>Share to Social Media</h5>
                 <button type="button" class="btn btn-default navbar-btn" id="twitter"
-                    style="margin-right: 10px;">
+                        style="margin-right: 10px;">
                     Tweet about it!
                 </button>
 
                 <button type="button" class="btn btn-default navbar-btn" id="facebook"
-                    style="margin-right: 10px;">
+                        style="margin-right: 10px;">
                     Share to Facebook!
                 </button>
             </div>
@@ -62,25 +62,25 @@
 </div>
 
 <!--<div class="modal fade" id="selectionModal">-->
-    <!--<div class="modal-dialog">-->
-        <!--<div class="modal-content">-->
-            <!--<div class="modal-header">-->
-                <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>-->
-                <!--<h4 class="modal-title" id="selection-modal-title"></h4>-->
-            <!--</div>-->
-            <!--<div class="modal-body" id="selection-modal-text">-->
-                <!--Where would you like to put the selected text?-->
-            <!--</div>-->
-            <!--<div class="modal-footer">-->
-                <!--<button type="button" class="btn btn-default" onclick="copySummaryText()">Summary</button>-->
-                <!--<button type="button" class="btn btn-default" onclick="copyGoalsText()">Goals</button>-->
-                <!--<button type="button" class="btn btn-default" onclick="copySuccessesText()">Successes</button>-->
-                <!--<button type="button" class="btn btn-default" onclick="copyFeedbackText()">Feedback</button>-->
-                <!--<button type="button" class="btn btn-default" onclick="copyAdditionalInfoText()">Additional Info-->
-                <!--</button>-->
-            <!--</div>-->
-        <!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
-    <!--</div>&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
+<!--<div class="modal-dialog">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header">-->
+<!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>-->
+<!--<h4 class="modal-title" id="selection-modal-title"></h4>-->
+<!--</div>-->
+<!--<div class="modal-body" id="selection-modal-text">-->
+<!--Where would you like to put the selected text?-->
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--<button type="button" class="btn btn-default" onclick="copySummaryText()">Summary</button>-->
+<!--<button type="button" class="btn btn-default" onclick="copyGoalsText()">Goals</button>-->
+<!--<button type="button" class="btn btn-default" onclick="copySuccessesText()">Successes</button>-->
+<!--<button type="button" class="btn btn-default" onclick="copyFeedbackText()">Feedback</button>-->
+<!--<button type="button" class="btn btn-default" onclick="copyAdditionalInfoText()">Additional Info-->
+<!--</button>-->
+<!--</div>-->
+<!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
+<!--</div>&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
 <!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
 
 <div class="container">
@@ -93,7 +93,7 @@
                 Finish
             </button> -->
             <button data-toggle="modal" data-target="#myModal"
-                 type="button" class="btn btn-default navbar-btn navbar-right myButton"
+                    type="button" class="btn btn-default navbar-btn navbar-right myButton"
                     style="margin-right: 10px; margin-left: 10px">
                 Publish
             </button>
@@ -316,27 +316,27 @@
 <div class="popover" id="popover" style="padding:10px;">
     <h4>Send text to...</h4>
     <button type="button" class="btn btn-default btn-block"
-            style="background-color:#00B76B; color:#ffffff; text-align: left;" onclick="copySummaryText()">
+            style="background-color:#00B76B; color:#ffffff; text-align: left;" onclick="copySummaryText(), surroundSelectionSummary()">
         <img src="img/summary.png" alt=" " style="width:25px;height:25px;margin:0">
         Summary
     </button>
     <button type="button" class="btn btn-default btn-block"
-            style="background-color:#CD000C; color:#ffffff; text-align: left;" onclick="copyGoalsText()">
+            style="background-color:#CD000C; color:#ffffff; text-align: left;" onclick="copyGoalsText(), surroundSelectionGoals()">
         <img src="img/goals.png" alt=" " style="width:25px;height:25px;margin:0">
         Goals
     </button>
     <button type="button" class="btn btn-default btn-block"
-            style="background-color:#F0AA00; color:#ffffff; text-align: left;" onclick="copySuccessesText()">
+            style="background-color:#F0AA00; color:#ffffff; text-align: left;" onclick="copySuccessesText(), surroundSelectionSuccesses()">
         <img src="img/successes.png" alt=" " style="width:25px;height:25px;margin:0">
         Successes
     </button>
     <button type="button" class="btn btn-default btn-block"
-            style="background-color:#00A4CC; color:#ffffff; text-align: left;" onclick="copyFeedbackText()">
+            style="background-color:#00A4CC; color:#ffffff; text-align: left;" onclick="copyFeedbackText(), surroundSelectionFeedback()">
         <img src="img/feedback.png" alt=" " style="width:25px;height:25px;margin:0">
         Feedback
     </button>
     <button type="button" class="btn btn-default btn-block"
-            style="background-color:#00206C; color:#ffffff; text-align: left;" onclick="copyAdditionalInfoText()">
+            style="background-color:#00206C; color:#ffffff; text-align: left;" onclick="copyAdditionalInfoText(), surroundSelectionAdditionalInfo()">
         <img src="img/additionalinfo.png" alt=" " style="width:25px;height:25px;margin:0">
         Additional Info
     </button>
@@ -471,37 +471,117 @@
         }
     }
 
-    function getSelectedText(input) {
-        var text = getSelection(input);
+    //    function getSelectedText(input) {
+    //        var text = getSelection(input);
+    //
+    //        if (text == null || text.length == 0) return null;
+    //
+    //        return text;
+    //    }
 
-        if (text == null || text.length == 0) return null;
+    //    function getSelection(textbox) {
+    //        var selectedText = null;
+    //        var activeElement = document.activeElement;
+    //
+    //        // all browsers (including IE9 and up), except IE before version 9
+    //        if (window.getSelection && activeElement &&
+    //            (activeElement.tagName.toLowerCase() == "textarea" || (activeElement.tagName.toLowerCase() == "input" && activeElement.type.toLowerCase() == "text")) &&
+    //            activeElement === textbox) {
+    //            var startIndex = textbox.selectionStart;
+    //            var endIndex = textbox.selectionEnd;
+    //
+    //            if (endIndex - startIndex > 0) {
+    //                var text = textbox.value;
+    //                selectedText = text.substring(textbox.selectionStart, textbox.selectionEnd);
+    //            }
+    //        }
+    //        else if (document.selection && document.selection.type == "Text" && document.selection.createRange) // All Internet Explorer
+    //        {
+    //            var range = document.selection.createRange();
+    //            selectedText = range.text;
+    //        }
+    //
+    //        return selectedText;
+    //    }
 
-        return text;
-    }
+    function surroundSelectionSummary() {
+        var span = document.createElement("span");
+        span.style.backgroundColor = "#00B76B";
+        span.style.color = "white";
 
-    function getSelection(textbox) {
-        var selectedText = null;
-        var activeElement = document.activeElement;
-
-        // all browsers (including IE9 and up), except IE before version 9
-        if (window.getSelection && activeElement &&
-            (activeElement.tagName.toLowerCase() == "textarea" || (activeElement.tagName.toLowerCase() == "input" && activeElement.type.toLowerCase() == "text")) &&
-            activeElement === textbox) {
-            var startIndex = textbox.selectionStart;
-            var endIndex = textbox.selectionEnd;
-
-            if (endIndex - startIndex > 0) {
-                var text = textbox.value;
-                selectedText = text.substring(textbox.selectionStart, textbox.selectionEnd);
+        if (window.getSelection) {
+            var sel = window.getSelection();
+            if (sel.rangeCount) {
+                var range = sel.getRangeAt(0).cloneRange();
+                range.surroundContents(span);
+                sel.removeAllRanges();
+                sel.addRange(range);
             }
         }
-        else if (document.selection && document.selection.type == "Text" && document.selection.createRange) // All Internet Explorer
-        {
-            var range = document.selection.createRange();
-            selectedText = range.text;
-        }
+    }
 
-        return selectedText;
+    function surroundSelectionGoals() {
+        var span = document.createElement("span");
+        span.style.backgroundColor = "#CD000C";
+        span.style.color = "white";
+
+        if (window.getSelection) {
+            var sel = window.getSelection();
+            if (sel.rangeCount) {
+                var range = sel.getRangeAt(0).cloneRange();
+                range.surroundContents(span);
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+        }
+    }
+
+    function surroundSelectionSuccesses() {
+        var span = document.createElement("span");
+        span.style.backgroundColor = "#F0AA00";
+        span.style.color = "white";
+
+        if (window.getSelection) {
+            var sel = window.getSelection();
+            if (sel.rangeCount) {
+                var range = sel.getRangeAt(0).cloneRange();
+                range.surroundContents(span);
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+        }
+    }
+
+    function surroundSelectionFeedback() {
+        var span = document.createElement("span");
+        span.style.backgroundColor = "#00A4CC";
+        span.style.color = "white";
+
+        if (window.getSelection) {
+            var sel = window.getSelection();
+            if (sel.rangeCount) {
+                var range = sel.getRangeAt(0).cloneRange();
+                range.surroundContents(span);
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+        }
+    }
+
+    function surroundSelectionAdditionalInfo() {
+        var span = document.createElement("span");
+        span.style.backgroundColor = "#00206C";
+        span.style.color = "white";
+
+        if (window.getSelection) {
+            var sel = window.getSelection();
+            if (sel.rangeCount) {
+                var range = sel.getRangeAt(0).cloneRange();
+                range.surroundContents(span);
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+        }
     }
 
     function collapseAll() {
