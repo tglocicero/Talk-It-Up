@@ -53,7 +53,11 @@ h2 {
     color: white;
 }
 #notes {
-        white-space: pre;
+        white-space: pre-wrap;
+        width: 100%;
+        overflow-x: hidden;
+        overflow:overlay;
+        overflow-wrap: break-word;
 }
 
 #notes-div {
