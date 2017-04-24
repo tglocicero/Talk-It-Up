@@ -1,13 +1,11 @@
-TODO
+Running our project
 -
-- Images? - sorta done
-- Improved exported layout
-- ~~Change the first two boxes~~
-- ~~Change all other boxes to include prompt in placeholder text~~
-- Icons + coloration?
-- Social Media integration (we don't actually need to post, just have a button for it that gives a success message when clicked)
-- Improved modal for highlighting/~~selecting and placing text~~
-- ~~Add buttons to collapse/open all the forms~~
-- ~~make preview button just open pdf in new tab~~
-    - fix bug: user can only view preview if they've uploaded an image
-- make publish button show a download pdf options or send to social media buttons
+- everything should be included in the package
+- navigate to index.html in the project folder and open it with google chrome
+
+Bugs
+-
+- there are a slew of bugs regarding highlighting/unhighlighting text
+    - a slew, I say.
+- the preview button does not work
+- the tweet and send to facebook buttons are dummy buttons

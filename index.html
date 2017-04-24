@@ -55,7 +55,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button class="btn btn-default" id="exportPDF">Generate PDF</button>
+                <button class="btn btn-default" onclick="downloadPDF()" id="exportPDF">Generate PDF</button>
             </div>
         </div>
     </div>
@@ -130,7 +130,7 @@
                         style="margin-right: 10px; margin-left: 10px">
                     Edit
                 </button>
-                <button onclick="preparePreview()" type="button" class="btn btn-default navbar-btn myButton"
+                <button type="button" class="btn btn-default navbar-btn myButton"
                         data-toggle="modal" data-target="#imageModal"
                         style="margin-right: 10px; margin-left: 10px">
                     Add Images
@@ -190,6 +190,12 @@
                     margin-bottom: 10px;">
                 Artifact
             </h2>
+            <div align="right">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default" onclick="collapseAll()">Collapse All</button>
+                    <button type="button" class="btn btn-default" onclick="openAll()">Open All</button>
+                </div>
+            </div>
             <div class="form-group tab-pane">
                 <div class="panel-group">
                     <h4 class="panel-title">
@@ -217,14 +223,14 @@
                         <div class="panel-heading" data-toggle="collapse" href="#collapse3">
                             <h4 class="panel-title">
                                 <a>
-                                    <img src="img/summary.png" alt="Summary" style="width:30px;height:30px;">
+                                    <img src="img/summary.png" alt="Summary" style="width:27px;height:27px;">
                                     <label for="summary">Summary</label>
                                 </a>
                             </h4>
                         </div>
                         <div id="collapse3" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <textarea class="form-control" maxlength="140" rows="5" id="summary"
+                                <textarea class="form-control"  onkeyup="cleanSum()" maxlength="140" rows="5" id="summary"
                                           placeholder="Enter a brief summary of the event (140 characters or less)."></textarea>
                             </div>
                         </div>
@@ -235,14 +241,14 @@
                         <div class="panel-heading" data-toggle="collapse" href="#collapse4">
                             <h4 class="panel-title">
                                 <a>
-                                    <img src="img/goals.png" alt="Summary" style="width:30px;height:30px;">
+                                    <img src="img/goals.png" alt="Summary" style="width:27px;height:27px;">
                                     <label for="goals">Goals</label>
                                 </a>
                             </h4>
                         </div>
                         <div id="collapse4" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <textarea class="form-control" rows="5" id="goals"
+                                <textarea class="form-control" onkeyup="cleanGoal()" rows="5" id="goals"
                                           placeholder="Explain how the event relates to your organization's goals."></textarea>
                             </div>
                         </div>
@@ -253,14 +259,14 @@
                         <div class="panel-heading" data-toggle="collapse" href="#collapse5">
                             <h4 class="panel-title">
                                 <a>
-                                    <img src="img/successes.png" alt="Summary" style="width:30px;height:30px;">
+                                    <img src="img/successes.png" alt="Summary" style="width:27px;height:27px;">
                                     <label for="successes">Successes</label>
                                 </a>
                             </h4>
                         </div>
                         <div id="collapse5" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <textarea class="form-control" rows="5" id="successes"
+                                <textarea class="form-control" onkeyup="cleanSuc()" rows="5" id="successes"
                                           placeholder="Describe any successes your organization achieved through this event."></textarea>
                             </div>
                         </div>
@@ -271,14 +277,14 @@
                         <div class="panel-heading" data-toggle="collapse" href="#collapse6">
                             <h4 class="panel-title">
                                 <a>
-                                    <img src="img/feedback.png" alt="Summary" style="width:30px;height:30px;">
+                                    <img src="img/feedback.png" alt="Summary" style="width:27px;height:27px;">
                                     <label for="feedback">Feedback</label>
                                 </a>
                             </h4>
                         </div>
                         <div id="collapse6" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <textarea class="form-control" rows="5" id="feedback"
+                                <textarea class="form-control" onkeyup="cleanFeed()" rows="5" id="feedback"
                                           placeholder="Enter any feedback your organization received from attendees."></textarea>
                             </div>
                         </div>
@@ -289,23 +295,17 @@
                         <div class="panel-heading" data-toggle="collapse" href="#collapse7">
                             <h4 class="panel-title">
                                 <a>
-                                    <img src="img/additionalinfo.png" alt="Summary" style="width:30px;height:30px;">
+                                    <img src="img/additionalinfo.png" alt="Summary" style="width:27px;height:27px;">
                                     <label for="additional-info">Additional Info</label>
                                 </a>
                             </h4>
                         </div>
                         <div id="collapse7" class="panel-collapse collapse">
                             <div class="panel-body">
-                                <textarea class="form-control" rows="5" id="additional-info"
+                                <textarea class="form-control" onkeyup="cleanAdd()" rows="5" id="additional-info"
                                           placeholder="Enter any additional information that you would like to include about the event."></textarea>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div align="right">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default" onclick="collapseAll()">Collapse All</button>
-                        <button type="button" class="btn btn-default" onclick="openAll()">Open All</button>
                     </div>
                 </div>
             </div>
@@ -340,6 +340,12 @@
         <img src="img/additionalinfo.png" alt=" " style="width:25px;height:25px;margin:0">
         Additional Info
     </button>
+    <span id="spanSum" style="background-color: #00B76B; color: #ffffff"></span>
+    <span id="spanGoal" style="background-color: #CD000C; color: #ffffff"></span>
+    <span id="spanSuc" style="background-color: #F0AA00; color: #ffffff"></span>
+    <span id="spanFeed" style="background-color: #00A4CC; color: #ffffff"></span>
+    <span id="spanAdd" style="background-color: #00206C; color: #ffffff"></span>
+
 </div>
 
 
@@ -358,9 +364,133 @@
 
     var selected_text = "";
 
+
     $("#notes").on("mouseup", function(e) {
         showSelectionModal(e);
     });
+
+    function downloadPDF() {
+        var eventname = document.getElementById('event-name').value;
+        var orgname = document.getElementById('org-name').value;
+        var summary = document.getElementById('summary').value;
+        var goals = document.getElementById('goals').value;
+        var successes = document.getElementById('successes').value;
+        var feedback = document.getElementById('feedback').value;
+        var additionalinfo = document.getElementById('additional-info').value;
+        var hostedBy = "";
+        var summaryST = "";
+        var goalsST = "";
+        var successesST = "";
+        var feedbackST = "";
+        var additionalInfoST = "";
+        if (orgname != "") {
+            hostedBy = 'Hosted By:';
+        }
+        if (summary != "") {
+            summaryST = 'Summary';
+        }
+        if (goals != "") {
+            goalsST = 'Goals';
+        }
+        if (successes != "") {
+            successesST = 'Successes';
+        }
+        if (feedback != "") {
+            feedbackST = 'Feedback';
+        }
+        if (additionalinfo != "") {
+            additionalInfoST = 'Additional Info';
+        }
+
+        // var images[];
+        // for (int i = 0; i < $('#list > span').length; i++) {
+        //     images.push()
+        // }
+        if (document.getElementById('img1') != null) {
+            var docDefinition = {
+                content: [
+                    {text: eventname, style: 'EventName'},
+                    {text: hostedBy, alignment: 'center'},
+                    {text: orgname, style: 'OrgName'},
+                    " ",
+                    {text: summaryST, style: 'SubHeading'},
+                    summary,
+                    " ",
+                    {text: goalsST, style: 'SubHeading'},
+                    goals,
+                    " ",
+                    {text: successesST, style: 'SubHeading'},
+                    successes,
+                    " ",
+                    {text: feedbackST, style: 'SubHeading'},
+                    feedback,
+                    " ",
+                    {text: additionalInfoST, style: 'SubHeading'},
+                    additionalinfo,
+                    " ",
+                    {image: document.getElementById('img1').src,
+                        width: 300}
+                ],
+
+                styles: {
+                    EventName: {
+                        fontSize: 36,
+                        alignment: 'center',
+                        bold: true
+                    },
+                    OrgName: {
+                        fontSize: 22,
+                        alignment: 'center'
+                    },
+                    SubHeading: {
+                        fontSize: 16,
+                        alignment: 'left'
+                    }
+                }
+            };
+        } else {
+            var docDefinition = {
+                content: [
+                    {text: eventname, style: 'EventName'},
+                    {text: hostedBy, alignment: 'center'},
+                    {text: orgname, style: 'OrgName'},
+                    " ",
+                    {text: summaryST, style: 'SubHeading'},
+                    summary,
+                    " ",
+                    {text: goalsST, style: 'SubHeading'},
+                    goals,
+                    " ",
+                    {text: successesST, style: 'SubHeading'},
+                    successes,
+                    " ",
+                    {text: feedbackST, style: 'SubHeading'},
+                    feedback,
+                    " ",
+                    {text: additionalInfoST, style: 'SubHeading'},
+                    additionalinfo,
+                ],
+
+                styles: {
+                    EventName: {
+                        fontSize: 36,
+                        alignment: 'center',
+                        bold: true
+                    },
+                    OrgName: {
+                        fontSize: 22,
+                        alignment: 'center'
+                    },
+                    SubHeading: {
+                        fontSize: 16,
+                        alignment: 'left'
+                    }
+                }
+            };
+        }
+
+        pdfMake.createPdf(docDefinition).download('Artifact.pdf');
+    }
 
     function copySummaryText() {
         var text = selected_text;
@@ -370,25 +500,25 @@
     }
     function copyGoalsText() {
         var text = selected_text;
-        $('#selectionModal').modal('hide');
+        $('#popover').hide();
         document.getElementById("goals").value += text;
         $('#collapse4').collapse('show');
     }
     function copySuccessesText() {
         var text = selected_text;
-        $('#selectionModal').modal('hide');
+        $('#popover').hide();
         document.getElementById("successes").value += text;
         $('#collapse5').collapse('show');
     }
     function copyFeedbackText() {
         var text = selected_text;
-        $('#selectionModal').modal('hide');
+        $('#popover').hide();
         document.getElementById("feedback").value += text;
         $('#collapse6').collapse('show');
     }
     function copyAdditionalInfoText() {
         var text = selected_text;
-        $('#selectionModal').modal('hide');
+        $('#popover').hide();
         document.getElementById("additional-info").value += text;
         $('#collapse7').collapse('show');
     }
@@ -402,55 +532,120 @@
         var feedback = document.getElementById('feedback').value;
         var additionalinfo = document.getElementById('additional-info').value;
         var hostedBy = "";
+        var summaryST = "";
+        var goalsST = "";
+        var successesST = "";
+        var feedbackST = "";
+        var additionalInfoST = "";
         if (orgname != "") {
             hostedBy = 'Hosted By:';
         }
+        if (summary != "") {
+            summaryST = 'Summary';
+        }
+        if (goals != "") {
+            goalsST = 'Goals';
+        }
+        if (successes != "") {
+            successesST = 'Successes';
+        }
+        if (feedback != "") {
+            feedbackST = 'Feedback';
+        }
+        if (additionalinfo != "") {
+            additionalInfoST = 'Additional Info';
+        }
+
         // var images[];
         // for (int i = 0; i < $('#list > span').length; i++) {
         //     images.push()
         // }
-        var docDefinition = {
-            content: [
-                {text: eventname, style: 'EventName'},
-                {text: hostedBy, alignment: 'center'},
-                {text: orgname, style: 'OrgName'},
-                " ",
-                {text: document.getElementById('summary').value, style: 'SubHeading'},
-                summary,
-                " ",
-                {text: document.getElementById('goals').value, style: 'SubHeading'},
-                goals,
-                " ",
-                {text: document.getElementById('successes').value, style: 'SubHeading'},
-                successes,
-                " ",
-                {text: document.getElementById('feedback').value, style: 'SubHeading'},
-                feedback,
-                " ",
-                {text: document.getElementById('additional-info').value, style: 'SubHeading'},
-                additionalinfo,
-                {image: document.getElementById('img1').src}
-            ],
+        if (document.getElementById('img1') != null) {
+            var docDefinition = {
+                content: [
+                    {text: eventname, style: 'EventName'},
+                    {text: hostedBy, alignment: 'center'},
+                    {text: orgname, style: 'OrgName'},
+                    " ",
+                    {text: summaryST, style: 'SubHeading'},
+                    summary,
+                    " ",
+                    {text: goalsST, style: 'SubHeading'},
+                    goals,
+                    " ",
+                    {text: successesST, style: 'SubHeading'},
+                    successes,
+                    " ",
+                    {text: feedbackST, style: 'SubHeading'},
+                    feedback,
+                    " ",
+                    {text: additionalInfoST, style: 'SubHeading'},
+                    additionalinfo,
+                    " ",
+                    {image: document.getElementById('img1').src,
+                    width: 300}
+                ],
 
-            styles: {
-                EventName: {
-                    fontSize: 36,
-                    alignment: 'center',
-                    bold: true
-                },
-                OrgName: {
-                    fontSize: 22,
-                    alignment: 'center'
-                },
-                SubHeading: {
-                    fontSize: 16,
-                    alignment: 'left'
+                styles: {
+                    EventName: {
+                        fontSize: 36,
+                        alignment: 'center',
+                        bold: true
+                    },
+                    OrgName: {
+                        fontSize: 22,
+                        alignment: 'center'
+                    },
+                    SubHeading: {
+                        fontSize: 16,
+                        alignment: 'left'
+                    }
                 }
-            }
-        };
+            };
+        } else {
+            var docDefinition = {
+                content: [
+                    {text: eventname, style: 'EventName'},
+                    {text: hostedBy, alignment: 'center'},
+                    {text: orgname, style: 'OrgName'},
+                    " ",
+                    {text: summaryST, style: 'SubHeading'},
+                    summary,
+                    " ",
+                    {text: goalsST, style: 'SubHeading'},
+                    goals,
+                    " ",
+                    {text: successesST, style: 'SubHeading'},
+                    successes,
+                    " ",
+                    {text: feedbackST, style: 'SubHeading'},
+                    feedback,
+                    " ",
+                    {text: additionalInfoST, style: 'SubHeading'},
+                    additionalinfo,
+                ],
 
-        // download the PDF
+                styles: {
+                    EventName: {
+                        fontSize: 36,
+                        alignment: 'center',
+                        bold: true
+                    },
+                    OrgName: {
+                        fontSize: 22,
+                        alignment: 'center'
+                    },
+                    SubHeading: {
+                        fontSize: 16,
+                        alignment: 'left'
+                    }
+                }
+            };
+        }
+
+        // open PDF in new page
         pdfMake.createPdf(docDefinition).open();
+
 
     }
 
@@ -504,16 +699,44 @@
     //        return selectedText;
     //    }
 
-    function surroundSelectionSummary() {
-        var span = document.createElement("span");
-        span.style.backgroundColor = "#00B76B";
-        span.style.color = "white";
+    var plainSpan = document.createElement("plainSpan");
+    plainSpan.style.backgroundColor = "white";
+    plainSpan.style.color = "black";
 
+    function cleanSum() {
+        if (document.getElementById('summary').value == '') {
+            document.getElementById('spanSum').style = plainSpan.style;
+        }
+    }
+    function cleanGoal() {
+        if (document.getElementById('goals').value == '') {
+            document.getElementById('spanGoal').style = plainSpan.style;
+        }
+    }
+    function cleanSuc() {
+        if (document.getElementById('successes').value == '') {
+            document.getElementById('spanSuc').style = plainSpan.style;
+        }
+    }
+    function cleanFeed() {
+        if (document.getElementById('feedback').value == '') {
+            document.getElementById('spanFeed').style = plainSpan.style;
+        }
+    }
+    function cleanAdd() {
+        if (document.getElementById('additional-info').value == '') {
+            document.getElementById('spanAdd').style = plainSpan.style;
+        }
+    }
+
+    function surroundSelectionSummary() {
+        document.getElementById('spanSum').style.backgroundColor = "#00B76B";
+        document.getElementById('spanSum').style.color = "white";
         if (window.getSelection) {
             var sel = window.getSelection();
             if (sel.rangeCount) {
                 var range = sel.getRangeAt(0).cloneRange();
-                range.surroundContents(span);
+                range.surroundContents(document.getElementById('spanSum'));
                 sel.removeAllRanges();
                 sel.addRange(range);
             }
@@ -521,15 +744,13 @@
     }
 
     function surroundSelectionGoals() {
-        var span = document.createElement("span");
-        span.style.backgroundColor = "#CD000C";
-        span.style.color = "white";
-
+        document.getElementById('spanGoal').style.backgroundColor = "#CD000C";
+        document.getElementById('spanGoal').style.color = "white";
         if (window.getSelection) {
             var sel = window.getSelection();
             if (sel.rangeCount) {
                 var range = sel.getRangeAt(0).cloneRange();
-                range.surroundContents(span);
+                range.surroundContents(document.getElementById('spanGoal'));
                 sel.removeAllRanges();
                 sel.addRange(range);
             }
@@ -537,15 +758,13 @@
     }
 
     function surroundSelectionSuccesses() {
-        var span = document.createElement("span");
-        span.style.backgroundColor = "#F0AA00";
-        span.style.color = "white";
-
+        document.getElementById('spanSuc').style.backgroundColor = "#F0AA00";
+        document.getElementById('spanSuc').style.color = "white";
         if (window.getSelection) {
             var sel = window.getSelection();
             if (sel.rangeCount) {
                 var range = sel.getRangeAt(0).cloneRange();
-                range.surroundContents(span);
+                range.surroundContents(document.getElementById('spanSuc'));
                 sel.removeAllRanges();
                 sel.addRange(range);
             }
@@ -553,15 +772,13 @@
     }
 
     function surroundSelectionFeedback() {
-        var span = document.createElement("span");
-        span.style.backgroundColor = "#00A4CC";
-        span.style.color = "white";
-
+        document.getElementById('spanFeed').style.backgroundColor = "#00A4CC";
+        document.getElementById('spanFeed').style.color = "white";
         if (window.getSelection) {
             var sel = window.getSelection();
             if (sel.rangeCount) {
                 var range = sel.getRangeAt(0).cloneRange();
-                range.surroundContents(span);
+                range.surroundContents(document.getElementById('spanFeed'));
                 sel.removeAllRanges();
                 sel.addRange(range);
             }
@@ -569,15 +786,13 @@
     }
 
     function surroundSelectionAdditionalInfo() {
-        var span = document.createElement("span");
-        span.style.backgroundColor = "#00206C";
-        span.style.color = "white";
-
+        document.getElementById('spanAdd').style.backgroundColor = "#00206C";
+        document.getElementById('spanAdd').style.color = "white";
         if (window.getSelection) {
             var sel = window.getSelection();
             if (sel.rangeCount) {
                 var range = sel.getRangeAt(0).cloneRange();
-                range.surroundContents(span);
+                range.surroundContents(document.getElementById('spanAdd'));
                 sel.removeAllRanges();
                 sel.addRange(range);
             }
