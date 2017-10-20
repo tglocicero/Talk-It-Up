@@ -1,7 +1,10 @@
+This is a prototype for a tool that can help neighborhood committee members improve communication.
+
 Running our project
 -
 - everything should be included in the package
 - navigate to index.html in the project folder and open it with google chrome
+	- some functionality is missing in safari
 
 Bugs
 -
